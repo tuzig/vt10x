@@ -638,7 +638,7 @@ func (t *State) setAttr(attr []int) {
 			if i+2 < len(attr) && attr[i+1] == 5 {
 				i += 2
 				if between(attr[i], 0, 255) {
-					t.cur.Attr.FG = Color(attr[i])
+					t.cur.Attr.FG = ColorFromIndex(attr[i])
 				} else {
 					t.logf("bad fgcolor %d\n", attr[i])
 				}
@@ -659,7 +659,7 @@ func (t *State) setAttr(attr []int) {
 			if i+2 < len(attr) && attr[i+1] == 5 {
 				i += 2
 				if between(attr[i], 0, 255) {
-					t.cur.Attr.BG = Color(attr[i])
+					t.cur.Attr.BG = ColorFromIndex(attr[i])
 				} else {
 					t.logf("bad bgcolor %d\n", attr[i])
 				}
@@ -678,13 +678,13 @@ func (t *State) setAttr(attr []int) {
 			t.cur.Attr.BG = DefaultBG
 		default:
 			if between(a, 30, 37) {
-				t.cur.Attr.FG = Color(a - 30)
+				t.cur.Attr.FG = ColorFromIndex(a - 30)
 			} else if between(a, 40, 47) {
-				t.cur.Attr.BG = Color(a - 40)
+				t.cur.Attr.BG = ColorFromIndex(a - 40)
 			} else if between(a, 90, 97) {
-				t.cur.Attr.FG = Color(a - 90 + 8)
+				t.cur.Attr.FG = ColorFromIndex(a - 90 + 8)
 			} else if between(a, 100, 107) {
-				t.cur.Attr.BG = Color(a - 100 + 8)
+				t.cur.Attr.BG = ColorFromIndex(a - 100 + 8)
 			} else {
 				t.logf("gfx attr %d unknown\n", a)
 			}

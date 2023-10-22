@@ -62,3 +62,16 @@ func TestNewline(t *testing.T) {
 		t.Fatal(st.cur.X, st.cur.Y, attr.FG, attr.BG)
 	}
 }
+
+func TestIndexColor(t *testing.T) {
+	term := New()
+	_, err := term.Write([]byte("\033[30mA"))
+	if err != nil && err != io.EOF {
+		t.Fatal(err)
+	}
+	attr := term.Cell(0, 0)
+	// The predefined color index 0 is:
+	if attr.FG != 0x2e3436 {
+		t.Fatal(attr.FG)
+	}
+}
