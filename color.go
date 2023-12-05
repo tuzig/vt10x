@@ -39,7 +39,7 @@ func (c Color) ANSI() bool {
 	return (c < 16)
 }
 
-// byte2color maps an 8 bit color to a 24-bit RGB Color.
+// byte2color maps an 8 bit color to a 24 bit RGB Color.
 func byte2color(i int) Color {
 	if colorCache[0] == 0 {
 		loadColorCache()
